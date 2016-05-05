@@ -43,7 +43,11 @@ class JDatabaseQueryMysqli extends JDatabaseQuery implements JDatabaseQueryLimit
 	 */
 	public function processLimit($query, $limit, $offset = 0)
 	{
-		if ($limit > 0 || $offset > 0)
+		if ($limit > 0)
+		{
+			$query .= ' LIMIT ' . $limit;
+		}
+		elseif ($limit > 0 && $offset > 0)
 		{
 			$query .= ' LIMIT ' . $offset . ', ' . $limit;
 		}
