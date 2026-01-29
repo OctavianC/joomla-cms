@@ -141,7 +141,10 @@ final class ActionLogs extends CMSPlugin implements SubscriberInterface
             return;
         }
 
-        $form->loadFile('actionlogs', false);
+        if (!$this->getApplication()->isClient('api'))
+        {
+            $form->loadFile('actionlogs', false);
+        }
     }
 
     /**
